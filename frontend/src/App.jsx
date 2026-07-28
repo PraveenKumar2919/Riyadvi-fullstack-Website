@@ -18,6 +18,7 @@ import WebDevelopment from "./servicePages/WebDevelopment";
 import DigitalMarketing from "./servicePages/DigitalMarketing";
 import ARVR from "./servicePages/ARVR";
 import ThreeDModeling from "./servicePages/ThreeDModeling";
+import WhatsAppButton from "./components/WhatsAppButton";
 function App() {
 
   return (
@@ -134,7 +135,7 @@ function App() {
 
       <FloatingCTA />
 
-
+<WhatsAppButton />
     </BrowserRouter>
 
   );
