@@ -134,3 +134,7 @@ EMAIL_HOST_USER = "vrpraveenkumar2003@gmail.com"
 EMAIL_HOST_PASSWORD = "xhqe ihvp zvwh dthx"
 
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+
+
+STATIC_ROOT = BASE_DIR / "staticfiles"
