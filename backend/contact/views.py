@@ -37,3 +37,28 @@ Message:
 
             fail_silently=False,
         )
+        try:
+            send_mail(
+                subject=f"New Contact Message - {name}",
+                message=f"""
+        Name : {name}
+        Email : {email}
+        Phone : {phone}
+
+        Message:
+        {message}
+        """,
+                from_email=settings.EMAIL_HOST_USER,
+                recipient_list=["vrpraveenkumar2003@gmail.com"],
+                fail_silently=False,
+            )
+
+            return Response(
+                {"message": "Message sent successfully"},
+                status=201
+            )
+
+        except Exception as e:
+            return Response(
+                {"error": str(e)},
+                status=500

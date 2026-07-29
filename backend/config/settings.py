@@ -128,13 +128,23 @@ EMAIL_PORT = 587
 
 EMAIL_USE_TLS = True
 
-EMAIL_HOST_USER = "vrpraveenkumar2003@gmail.com"
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
 
-EMAIL_HOST_PASSWORD = "xhqe ihvp zvwh dthx"
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 
 
 STATIC_ROOT = BASE_DIR / "staticfiles"
-CORS_ALLOW_ALL_ORIGINS = True
+ALLOWED_HOSTS = [
+    "riyadvi-fullstack-website.onrender.com",
+    "localhost",
+    "127.0.0.1",
+]
+CORS_ALLOW_CREDENTIALS = True
+ALLOWED_HOSTS = [
+    "riyadvi-fullstack-website.onrender.com",
+    "localhost",
+    "127.0.0.1",
+]
