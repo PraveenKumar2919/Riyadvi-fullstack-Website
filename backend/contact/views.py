@@ -11,20 +11,15 @@ logger = logging.getLogger(__name__)
 
 
 class ContactCreateView(generics.CreateAPIView):
-
     queryset = ContactMessage.objects.all()
     serializer_class = ContactSerializer
 
     def perform_create(self, serializer):
-
-        # Always save the contact message first. The lead must never be
-        # lost just because the notification email failed to send.
         contact = serializer.save()
 
         try:
             send_mail(
                 subject=f"New Contact Message from {contact.name}",
-
                 message=f"""
 Name: {contact.name}
 
@@ -35,21 +30,13 @@ Phone: {contact.phone}
 Message:
 {contact.message}
 """,
-
                 from_email=settings.EMAIL_HOST_USER,
-
-                recipient_list=[
-                    "vrpraveenkumar2003@gmail.com"
-                ],
-
-                # Never let an SMTP failure bubble up and turn a
-                # successful DB save into a 500 error for the user.
-                fail_silently=True,
+                recipient_list=["vrpraveenkumar2003@gmail.com"],
+                fail_silently=False,   # <-- Change this
             )
-        except Exception:
-            # Belt-and-braces: even with fail_silently=True some backends
-            # can still raise (e.g. bad settings). Log it, don't crash.
-            logger.exception(
-                "Failed to send contact notification email for contact id=%s",
-                contact.id,
-            )
+
+            print("✅ Email sent successfully")
+
+        except Exception as e:
+            logger.exception("Email sending failed")
+            raise e
