@@ -128,6 +128,11 @@ EMAIL_PORT = 587
 
 EMAIL_USE_TLS = True
 
+# Without this, a blocked/slow SMTP connection (common on free hosting
+# tiers) hangs the request indefinitely instead of failing fast. This
+# keeps perform_create()'s try/except effective.
+EMAIL_TIMEOUT = 10
+
 EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER", "")
 
 # IMPORTANT: never hardcode this. Set EMAIL_HOST_PASSWORD as an env var
