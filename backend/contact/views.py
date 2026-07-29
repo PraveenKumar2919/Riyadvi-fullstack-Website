@@ -32,11 +32,11 @@ Message:
 """,
                 from_email=settings.EMAIL_HOST_USER,
                 recipient_list=["vrpraveenkumar2003@gmail.com"],
-                fail_silently=False,   # <-- Change this
+                fail_silently=False,
             )
 
             print("✅ Email sent successfully")
 
         except Exception as e:
             logger.exception("Email sending failed")
-            raise e
+            print(e)
