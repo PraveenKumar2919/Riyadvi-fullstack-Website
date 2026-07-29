@@ -25,6 +25,7 @@ function Contact() {
         alert("Message Sent Successfully!");
 
         setFormData({
+
           name: "",
           email: "",
           phone: "",
